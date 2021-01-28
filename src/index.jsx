@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useState } from "react";
 import ReactDOM from "react-dom";
+import initStore from "./store";
+import createReducers from "./reducers";
 
 const CountContext = createContext();
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const countUp = () => {
-    setCount(count + 1);
-  };
+  const store = initStore();
+  const reducers = createReducers(store);
 
   return (
-    <CountContext.Provider value={{ count, countUp }}>
+    <CountContext.Provider value={{ ...store, ...reducers }}>
       <Hello />
     </CountContext.Provider>
   );
