@@ -1,16 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
-
-const CountContext = createContext();
+import { CountContext, useCount } from "./count";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const countUp = () => {
-    setCount(count + 1);
-  };
-
   return (
-    <CountContext.Provider value={{ count, countUp }}>
+    <CountContext.Provider value={useCount()}>
       <Hello />
     </CountContext.Provider>
   );
